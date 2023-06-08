@@ -25,7 +25,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer style={styles.toFlex}>
         <View style={darkMode ? styles.light : styles.dark}>
           <Button
             title={darkMode ? "To Day!" : "To Night!"}
@@ -70,6 +70,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     cursor: "pointer",
   },
+  toFlex: {
+    flexDirection: "column",
+  }
 });
 
 
