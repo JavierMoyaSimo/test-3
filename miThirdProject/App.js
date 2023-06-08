@@ -1,4 +1,4 @@
-import { Button, StyleSheet } from "react-native";
+import { Button, StyleSheet, View } from "react-native";
 //New imports
 import * as React from "react";
 import { useState } from "react";
@@ -26,16 +26,13 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Button
-          style={
-            darkMode
-              ? [styles.dark, styles.button]
-              : [styles.light, styles.button]
-          }
-          onPress={handleDarkMode}
-        >
-          {darkMode ? "To Day!" : "To Night!"}
-        </Button>
+        <View style={darkMode ? styles.light : styles.dark}>
+          <Button
+            title={darkMode ? "To Day!" : "To Night!"}
+            onPress={handleDarkMode}
+          />
+        </View>
+
         <Stack.Navigator>
           <Stack.Screen
             name="HomeScreen"
@@ -74,3 +71,13 @@ const styles = StyleSheet.create({
     cursor: "pointer",
   },
 });
+
+
+
+
+
+
+
+  
+
+

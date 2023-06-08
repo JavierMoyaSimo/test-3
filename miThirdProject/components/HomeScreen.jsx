@@ -22,6 +22,7 @@ const HomeScreen = ({ navigation }) => {
 
   const styles = StyleSheet.create({
     totalWidth: {
+      // flex: 1,
       width: "100%",
       display: "flex",
       justifyContent: "center",
@@ -45,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
       justifyContent: "center",
       alignItems: "center",
     },
-    widhtMax: {
+    widthMax: {
       // flex: 1,
       // marginBottom: 16,
       // backgroundColor: "lightblue",
@@ -103,27 +104,27 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView contentContainerStyle={styles.totalWidth}>
         <View style={[styles.container, styles.table]}>
           <View style={[styles.flex, styles.header]}>
-            <Text style={styles.widhtMax}>ID</Text>
-            <Text style={styles.widhtMax}>Name</Text>
-            <Text style={styles.widhtMax}>Status</Text>
-            <Text style={styles.widhtMax}>Species</Text>
-            <Text style={styles.widhtMax}>Face</Text>
+            <Text style={styles.widthMax}>ID</Text>
+            <Text style={styles.widthMax}>Name</Text>
+            <Text style={styles.widthMax}>Status</Text>
+            <Text style={styles.widthMax}>Species</Text>
+            <Text style={styles.widthMax}>Face</Text>
           </View>
 
           {users.map((user, index) => (
             <>
               <View key={index} style={styles.flex}>
                 <TouchableOpacity
-                  style={styles.widhtMax}
+                  style={styles.widthMax}
                   onPress={() => clickedUser(user)}
                 >
                   <Text>{user.id}</Text>
                 </TouchableOpacity>
 
-                <Text style={styles.widhtMax}>{user.name}</Text>
-                <Text style={styles.widhtMax}>{user.status}</Text>
-                <Text style={styles.widhtMax}>{user.species}</Text>
-                <View style={styles.widhtMax}>
+                <Text style={styles.widthMax}>{user.name}</Text>
+                <Text style={styles.widthMax}>{user.status}</Text>
+                <Text style={styles.widthMax}>{user.species}</Text>
+                <View style={styles.widthMax}>
                   <TouchableOpacity onPress={() => clickedUser(user)}>
                     <Image
                       source={{ uri: user.image }}
