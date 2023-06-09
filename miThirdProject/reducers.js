@@ -4,6 +4,7 @@ export const detailSlice = createSlice({
     name: 'detail',
     initialState: {
         details: {},
+        // detailsDark: {},
      
        
     },
@@ -14,6 +15,12 @@ export const detailSlice = createSlice({
                 ...action.payload
             }
         },
+        // addDetailsDark: (state, action) => {
+        //     return {
+        //         ...state,
+        //         ...action.payload
+        //     }
+        // },
         
     }
 

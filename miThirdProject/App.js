@@ -15,34 +15,41 @@ import store from "./app/store";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+  //PRUEBA
+  // const [lightNight, setLightNight] = useState(false);
+  //FINPRUEBA
+
   //Normal mode- dark mode
   const [darkMode, setDarkMode] = useState(false);
 
   //Handle-button
   const handleDarkMode = () => {
     setDarkMode(!darkMode);
+    // setLightNight(!darkMode);
   };
 
   return (
     <Provider store={store}>
-      <NavigationContainer style={styles.toFlex}>
-        <View style={darkMode ? styles.light : styles.dark}>
+       <View style={darkMode ? styles.light : styles.dark}>
           <Button
             title={darkMode ? "To Day!" : "To Night!"}
             onPress={handleDarkMode}
           />
         </View>
+      <NavigationContainer style={styles.toFlex}>
+       
 
         <Stack.Navigator>
           <Stack.Screen
             name="HomeScreen"
             component={HomeScreen}
-            style={darkMode ? styles.light : styles.dark}
+           initialParams={{ lightMode: darkMode }}
           />
           <Stack.Screen
             name="DetailScreen"
             component={DetailScreen}
-            style={darkMode ? styles.light : styles.dark}
+            initialParams={{ lightMode: darkMode }}
           />
         </Stack.Navigator>
       </NavigationContainer>
@@ -72,15 +79,5 @@ const styles = StyleSheet.create({
   },
   toFlex: {
     flexDirection: "column",
-  }
+  },
 });
-
-
-
-
-
-
-
-  
-
-

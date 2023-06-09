@@ -99,7 +99,7 @@ const DetailScreen = ({ navigation, route }) => {
         <View style={styles.contentDetail}>
           <View style={styles.infoDetail}>
             <View style={styles.detailLi}>
-              <Text style={styles.boldText}>Id -</Text>{" "}
+              <Text style={styles.boldText}>Id -</Text>
               <Text>{selectedUser?.id}</Text>
             </View>
             <View style={styles.detailLi}>
@@ -107,7 +107,7 @@ const DetailScreen = ({ navigation, route }) => {
               <Text>{selectedUser?.name}</Text>
             </View>
             <View style={styles.detailLi}>
-              <Text style={styles.boldText}>Status -</Text>{" "}
+              <Text style={styles.boldText}>Status -</Text>
               <Text>{selectedUser?.status}</Text>
             </View>
             <View style={styles.detailLi}>
