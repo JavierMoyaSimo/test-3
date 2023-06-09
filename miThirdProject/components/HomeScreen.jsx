@@ -13,16 +13,14 @@ import { addDetail } from "../reducers";
 import { useState, useEffect } from "react";
 import { getUsers } from "../services/apiCalls";
 
-
 const HomeScreen = ({ navigation, route }) => {
-
   const { lightMode } = route.params;
   console.log(lightMode);
 
   //useEffect
   useEffect(() => {
     if (lightMode === true) {
-      console.log("lightMode change" , lightMode)
+      console.log("lightMode change", lightMode);
     }
   }, [lightMode]);
   // //Normal mode- dark mode
@@ -86,14 +84,16 @@ const HomeScreen = ({ navigation, route }) => {
     flex: {
       // flex: 1,
       flexDirection: "row",
-      justifyContent: "center",
+      justifyContent: "space-around",
       alignItems: "center",
+      // width:"100%",
     },
     widthMax: {
       // flex: 1,
       // marginBottom: 16,
       // backgroundColor: "lightblue",
-      width: "25%",
+      width: "20%",
+      padding: 2,
     },
     hr: {
       width: "100%",
@@ -103,13 +103,18 @@ const HomeScreen = ({ navigation, route }) => {
     },
     header: {
       backgroundColor: "rgba(190, 164, 223, 0.219)",
-      width: "100%",
+      // width: "100%",
     },
     image: {
-      maxWidth: 60,
-      height: "auto",
-      cursor: "pointer",
+      // maxWidth: 60,
+      // height: "auto",
+      // cursor: "pointer",
+      width: 50,
+      height: 50,
     },
+    width100: {
+      // width: "100%",
+    }
   });
 
   const dispatch = useDispatch();
@@ -125,6 +130,8 @@ const HomeScreen = ({ navigation, route }) => {
       getUsers()
         .then((users) => {
           setUsers(users);
+          console.log(users);
+          console.log(users[0].image)
         })
         .catch((error) => console.error(error));
     }
@@ -168,7 +175,13 @@ const HomeScreen = ({ navigation, route }) => {
             </svg>
           )}
         </View> */}
-        <View style={lightMode ?[styles.containerLight, styles.table] :[styles.containerDark, styles.table] }>
+        <View
+          style={
+            lightMode
+              ? [styles.containerLight, styles.table]
+              : [styles.containerDark, styles.table]
+          }
+        >
           <View style={[styles.flex, styles.header]}>
             <Text style={styles.widthMax}>ID</Text>
             <Text style={styles.widthMax}>Name</Text>
@@ -178,8 +191,8 @@ const HomeScreen = ({ navigation, route }) => {
           </View>
 
           {users.map((user, index) => (
-            <View key={index}>
-              <View  style={styles.flex}>
+            <View style={styles.width100} key={index}>
+              <View style={styles.flex}>
                 <TouchableOpacity
                   style={styles.widthMax}
                   onPress={() => clickedUser(user)}
@@ -193,9 +206,9 @@ const HomeScreen = ({ navigation, route }) => {
                 <View style={styles.widthMax}>
                   <TouchableOpacity onPress={() => clickedUser(user)}>
                     <Image
+                      accessibilityLabel={user.name}
                       source={{ uri: user.image }}
-                      alt={user.name}
-                      style={styles.image}
+                      style={[styles.image]}
                     />
                   </TouchableOpacity>
                 </View>
