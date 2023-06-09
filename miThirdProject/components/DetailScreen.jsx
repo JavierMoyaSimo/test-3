@@ -11,6 +11,9 @@ import { useSelector } from "react-redux";
 import { detailData } from "../reducers";
 
 const DetailScreen = ({ navigation, route }) => {
+  //darkMode params
+  const { lightMode } = route.params;
+
   //Calculation of padding size in pixels
   const emSize = 16;
   const fontSize = 4;
@@ -21,8 +24,6 @@ const DetailScreen = ({ navigation, route }) => {
   //Styles
   const styles = StyleSheet.create({
     viewDiv: {
-      flex: 1,
-      backgroundColor: "rgba(149, 174, 216, 0.215)",
       width: "100%",
       justifyContent: "center",
       alignItems: "center",
@@ -35,13 +36,12 @@ const DetailScreen = ({ navigation, route }) => {
     },
     contentDetail: {
       width: "100%",
-      display: "flex",
+      flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
       flexWrap: "wrap",
     },
     infoDetail: {
-      backgroundColor: "rgba(149, 174, 216, 0.215)",
       padding: paddingTrue,
     },
     detailLi: {
@@ -81,6 +81,24 @@ const DetailScreen = ({ navigation, route }) => {
     boldText: {
       fontWeight: "bold",
     },
+    image: {
+      width: 200,
+      height: 200,
+    },
+    containerLight: {
+      backgroundColor: "black",
+      padding: paddingTrue,
+    },
+    containerDark: {
+      backgroundColor: "rgba(149, 174, 216, 0.215)",
+      padding: paddingTrue,
+    },
+    whiteLetter: {
+      color:"white"
+    },
+    blackLetter: {
+      color:"black"
+    }
   });
 
   //Data from Redux
@@ -94,32 +112,35 @@ const DetailScreen = ({ navigation, route }) => {
   //RENDER
   if (selectedUser?.id !== undefined) {
     return (
-      <ScrollView contentContainerStyle={styles.viewDiv}>
-        <Text style={styles.title}>{selectedUser?.name}</Text>
+      <ScrollView
+        contentContainerStyle={
+          lightMode
+            ? [styles.containerLight, styles.viewDiv]
+            : [styles.containerDark, styles.viewDiv]
+        }
+      >
+        <Text style={lightMode ?[styles.title, styles.whiteLetter] : [styles.title, styles.blackLetter] }>{selectedUser?.name}</Text>
         <View style={styles.contentDetail}>
           <View style={styles.infoDetail}>
             <View style={styles.detailLi}>
-              <Text style={styles.boldText}>Id -</Text>
-              <Text>{selectedUser?.id}</Text>
+              <Text style={lightMode ?[styles.boldText, styles.whiteLetter] : [styles.boldText, styles.blackLetter] }>Id -</Text>
+              <Text style={lightMode ?styles.whiteLetter : styles.blackLetter }>{selectedUser?.id}</Text>
             </View>
             <View style={styles.detailLi}>
-              <Text style={styles.boldText}>Name - </Text>
-              <Text>{selectedUser?.name}</Text>
+              <Text style={lightMode ?[styles.boldText, styles.whiteLetter] : [styles.boldText, styles.blackLetter] }>Name - </Text>
+              <Text style={lightMode ?styles.whiteLetter : styles.blackLetter }>{selectedUser?.name}</Text>
             </View>
             <View style={styles.detailLi}>
-              <Text style={styles.boldText}>Status -</Text>
-              <Text>{selectedUser?.status}</Text>
+              <Text style={lightMode ?[styles.boldText, styles.whiteLetter] : [styles.boldText, styles.blackLetter] }>Status -</Text>
+              <Text style={lightMode ?styles.whiteLetter : styles.blackLetter }>{selectedUser?.status}</Text>
             </View>
             <View style={styles.detailLi}>
-              <Text style={styles.boldText}>Specie - </Text>
-              <Text>{selectedUser?.species}</Text>
+              <Text style={lightMode ?[styles.boldText, styles.whiteLetter] : [styles.boldText, styles.blackLetter] }>Specie - </Text>
+              <Text style={lightMode ?styles.whiteLetter : styles.blackLetter }>{selectedUser?.species}</Text>
             </View>
           </View>
           <View style={styles.imgDiv}>
-            <Image
-              src={{ uri: selectedUser?.image }}
-              style={{ maxWidth: 300, height: "auto" }}
-            />
+            <Image source={{ uri: selectedUser?.image }} style={styles.image} />
           </View>
         </View>
         <View style={styles.detailButton}>
@@ -130,7 +151,7 @@ const DetailScreen = ({ navigation, route }) => {
   } else {
     return (
       <View style={styles.errorView}>
-        <Text>Sorry, there has been an error</Text>
+        <Text style={lightMode ?[styles.boldText, styles.whiteLetter] : [styles.boldText, styles.blackLetter] }>Sorry, there has been an error</Text>
         <View style={styles.errorButton}>
           <Button title="Home" onPress={returnHome} />
         </View>

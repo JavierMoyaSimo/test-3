@@ -56,12 +56,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   light: {
-    backgroundColor: "rgba(149, 174, 216, 0.215)",
-    color: "black",
-  },
-  dark: {
     backgroundColor: "black",
     color: "white",
+  },
+  dark: {
+    backgroundColor: "rgba(149, 174, 216, 0.215)",
+    color: "black",
   },
   button: {
     height: "5%",

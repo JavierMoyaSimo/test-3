@@ -47,14 +47,12 @@ const HomeScreen = ({ navigation, route }) => {
       padding: paddingTrue,
     },
     containerLight: {
-      backgroundColor: "rgba(149, 174, 216, 0.215)",
+      backgroundColor: "black",
       padding: paddingTrue,
-      color: "white",
     },
     containerDark: {
-      backgroundColor: "white",
+      backgroundColor: "rgba(149, 174, 216, 0.215)",
       padding: paddingTrue,
-      color: "black",
     },
     table: {
       flexDirection: "column",
@@ -84,6 +82,12 @@ const HomeScreen = ({ navigation, route }) => {
       width: 50,
       height: 50,
     },
+    whiteLetter: {
+      color:"white"
+    },
+    blackLetter: {
+      color:"black"
+    }
   });
 
   
@@ -135,20 +139,20 @@ const HomeScreen = ({ navigation, route }) => {
           }
         >
           <View style={[styles.flex, styles.header]}>
-            <Text style={styles.widthMax}>ID</Text>
-            <Text style={styles.widthMax}>Name</Text>
-            <Text style={styles.widthMax}>Status</Text>
-            <Text style={styles.widthMax}>Species</Text>
-            <Text style={styles.widthMax}>Face</Text>
+            <Text style={lightMode ?[styles.widthMax, styles.whiteLetter] : [styles.widthMax, styles.blackLetter] }>ID</Text>
+            <Text style={lightMode ?[styles.widthMax, styles.whiteLetter] : [styles.widthMax, styles.blackLetter] }>Name</Text>
+            <Text style={lightMode ?[styles.widthMax, styles.whiteLetter] : [styles.widthMax, styles.blackLetter] }>Status</Text>
+            <Text style={lightMode ?[styles.widthMax, styles.whiteLetter] : [styles.widthMax, styles.blackLetter] }>Species</Text>
+            <Text style={lightMode ?[styles.widthMax, styles.whiteLetter] : [styles.widthMax, styles.blackLetter] }>Face</Text>
           </View>
 
           {users.map((user, index) => (
             <View style={styles.width100} key={index}>
               <View style={styles.flex}>
-                <Text style={styles.widthMax}>{user.id}</Text>
-                <Text style={styles.widthMax}>{user.name}</Text>
-                <Text style={styles.widthMax}>{user.status}</Text>
-                <Text style={styles.widthMax}>{user.species}</Text>
+                <Text style={lightMode ?[styles.widthMax, styles.whiteLetter] : [styles.widthMax, styles.blackLetter] }>{user.id}</Text>
+                <Text style={lightMode ?[styles.widthMax, styles.whiteLetter] : [styles.widthMax, styles.blackLetter] }>{user.name}</Text>
+                <Text style={lightMode ?[styles.widthMax, styles.whiteLetter] : [styles.widthMax, styles.blackLetter] }>{user.status}</Text>
+                <Text style={lightMode ?[styles.widthMax, styles.whiteLetter] : [styles.widthMax, styles.blackLetter] }>{user.species}</Text>
                 <View style={styles.widthMax}>
                   <TouchableOpacity onPress={() => clickedUser(user)}>
                     <Image
