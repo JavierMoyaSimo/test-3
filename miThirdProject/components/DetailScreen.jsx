@@ -1,20 +1,24 @@
-import HomeScreen from "./HomeScreen";
-import { Text, View, Button, Image, StyleSheet, ScrollView } from "react-native";
 //Imports
+import {
+  Text,
+  View,
+  Button,
+  Image,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 import { useSelector } from "react-redux";
 import { detailData } from "../reducers";
 
 const DetailScreen = ({ navigation, route }) => {
-  const emSize = 16; // Tamaño base en píxeles para 1em
-  const fontSize = 4; // Tamaño deseado en em
+  //Calculation of padding size in pixels
+  const emSize = 16;
+  const fontSize = 4;
   const paddingSize = 3;
-  const errorFontSize = 2;
-
-  // Cálculo del tamaño de padding en píxeles
   const fontTrue = fontSize * emSize;
   const paddingTrue = emSize * paddingSize;
-  const errorFont = emSize * errorFontSize;
 
+  //Styles
   const styles = StyleSheet.create({
     viewDiv: {
       flex: 1,
@@ -82,16 +86,12 @@ const DetailScreen = ({ navigation, route }) => {
   //Data from Redux
   const selectedUser = useSelector(detailData);
 
-  // const prop = props;
-  // console.log(prop);
-
   //FUNCTIONS
   const returnHome = () => {
     navigation.navigate("HomeScreen");
   };
 
   //RENDER
-
   if (selectedUser?.id !== undefined) {
     return (
       <ScrollView contentContainerStyle={styles.viewDiv}>

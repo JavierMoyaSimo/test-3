@@ -1,5 +1,5 @@
+//Imports
 import { Button, StyleSheet, View } from "react-native";
-//New imports
 import * as React from "react";
 import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
@@ -15,44 +15,38 @@ import store from "./app/store";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-
-  //PRUEBA
-  // const [lightNight, setLightNight] = useState(false);
-  //FINPRUEBA
-
-  //Normal mode- dark mode
+  //Normal mode - dark mode
   const [darkMode, setDarkMode] = useState(false);
 
   //Handle-button
   const handleDarkMode = () => {
     setDarkMode(!darkMode);
-    // setLightNight(!darkMode);
   };
 
   return (
     <Provider store={store}>
-       <View style={darkMode ? styles.light : styles.dark}>
+      <View style={ darkMode ? [styles.container, styles.light] : [styles.container, styles.dark]}>
+        <View style={darkMode ? styles.light : styles.dark}>
           <Button
             title={darkMode ? "To Day!" : "To Night!"}
             onPress={handleDarkMode}
           />
         </View>
-      <NavigationContainer style={styles.toFlex}>
-       
-
-        <Stack.Navigator>
-          <Stack.Screen
-            name="HomeScreen"
-            component={HomeScreen}
-           initialParams={{ lightMode: darkMode }}
-          />
-          <Stack.Screen
-            name="DetailScreen"
-            component={DetailScreen}
-            initialParams={{ lightMode: darkMode }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+        <NavigationContainer style={styles.toFlex}>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="HomeScreen"
+              component={HomeScreen}
+              initialParams={{ lightMode: darkMode }}
+            />
+            <Stack.Screen
+              name="DetailScreen"
+              component={DetailScreen}
+              initialParams={{ lightMode: darkMode }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </View>
     </Provider>
   );
 }
@@ -60,9 +54,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
   light: {
     backgroundColor: "rgba(149, 174, 216, 0.215)",
